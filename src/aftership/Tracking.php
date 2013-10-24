@@ -10,7 +10,6 @@ class Tracking extends request
 		if (empty($api_key))
 			throw new \Exception('API Key is missing');
 		$this->_api_key = $api_key;
-
 	}
 
 	public function create(array $data) {

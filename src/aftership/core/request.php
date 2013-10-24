@@ -2,6 +2,7 @@
 namespace AfterShip\core;
 
 use Guzzle\Http\Client;
+use Guzzle\Plugin\Log\LogPlugin;
 
 class request
 {
@@ -11,6 +12,8 @@ class request
 
 	protected function send($url, $request_type, array $data = array()) {
 		$client  = new Client();
+        $logPlugin = LogPlugin::getDebugPlugin();
+        $client->addSubscriber($logPlugin);
 		$headers = array(
 			'aftership-api-key' => $this->_api_key
 		);
