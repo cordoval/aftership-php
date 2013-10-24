@@ -19,6 +19,8 @@ class request
 				$request = $client->get($this->_api_url . '/' . $this->_api_version . '/' . $url, $headers, array('query' => $data));
 				break;
 			case "POST":
+                // Encode <, >, ', &, and " for RFC4627-compliant JSON, which may also be embedded into HTML.
+                $data = json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
 				$request = $client->post($this->_api_url . '/' . $this->_api_version . '/' . $url, $headers, $data);
 				break;
 			case "PUT":
